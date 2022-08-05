@@ -1,7 +1,10 @@
 package zeldaminiclone;
 
 import java.awt.Canvas;
+import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.image.BufferStrategy;
 
 import javax.swing.JFrame;
 
@@ -15,6 +18,31 @@ public class Game extends Canvas implements Runnable{
 		this.setPreferredSize( new Dimension (WIDTH, HEIGHT));
 	}
 
+	public void tick () {
+		
+	}
+	
+	public void render() {
+		BufferStrategy bs = this.getBufferStrategy();
+		
+		//Otimizacao de render, para veriguar o Buffer
+		if(bs == null) {
+			this.createBufferStrategy(3);
+			return;
+		}
+		
+		Graphics g = bs.getDrawGraphics();
+		
+		g.setColor(Color.black);
+		//criar retangulo na tela nas dimensoes (x,y,WIDTH,HEIGHT)
+		g.fillRect(0, 0, WIDTH, HEIGHT);
+		
+		g.setColor(Color.red);
+		g.fillRect(0, 0, 50, 50);
+		
+		bs.show();
+		
+	}
 	
 	public static void main (String [] args) {
 		//Instanciou o metodo Game e a biblioteca Jframe
@@ -40,14 +68,17 @@ public class Game extends Canvas implements Runnable{
 	
 	@Override
 	public void run() {
-		
+
 		while (true) {
-			System.out.println("Chamar o game looping");
-		}
-	
-		
+			tick();
+			render();
+			try {
+				//setando o FPS 60 
+				Thread.sleep(1000/60);
+			}catch(InterruptedException e) {
+					e.printStackTrace();
+				}
+			}
 	}
 	
-	
-
 }

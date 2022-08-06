@@ -4,22 +4,27 @@ import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.image.BufferStrategy;
 
 import javax.swing.JFrame;
 
-public class Game extends Canvas implements Runnable{
+public class Game extends Canvas implements Runnable, KeyListener{
 	
 	//resolucao da tela
 	public static int WIDTH = 480, HEIGHR = 480;
+	public Player player;
 	
 	public Game() {
+		this.addKeyListener(this);	//colocar eventos de teclado e os metodos ja estao nessa class Game
 		//setando as dimensoes
 		this.setPreferredSize( new Dimension (WIDTH, HEIGHT));
+		player = new Player(0, 0);	//Dimensoes inicio game
 	}
 
 	public void tick () {
-		
+		player.tick();		//chama dentro da class Player o metodo tick
 	}
 	
 	public void render() {
@@ -37,9 +42,8 @@ public class Game extends Canvas implements Runnable{
 		//criar retangulo na tela nas dimensoes (x,y,WIDTH,HEIGHT)
 		g.fillRect(0, 0, WIDTH, HEIGHT);
 		
-		g.setColor(Color.red);
-		g.fillRect(0, 0, 50, 50);
-		
+		player.render(g); 	//chama dentro da class Player o metodo render 
+
 		bs.show();
 		
 	}
@@ -68,7 +72,7 @@ public class Game extends Canvas implements Runnable{
 	
 	@Override
 	public void run() {
-
+		
 		while (true) {
 			tick();
 			render();
@@ -81,4 +85,46 @@ public class Game extends Canvas implements Runnable{
 			}
 	}
 	
+	//TECLADO (KeyListener) Config
+	
+	@Override
+	public void keyTyped(KeyEvent e) {
+		//LOGICA para andar
+		if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+			player.right = true;
+		}else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
+			player.left = true;
+		}
+		if (e.getKeyCode() == KeyEvent.VK_UP) {
+			player.right = true;
+		}else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+			player.left = true;
+		}
+		
+	}
+	
+	
+	@Override
+	public void keyPressed(KeyEvent e) {
+		//LOGICA para parar
+		if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+			player.right = false;
+		}else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
+			player.left = false;
+		}
+		if (e.getKeyCode() == KeyEvent.VK_UP) {
+			player.right = false;
+		}else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+			player.left = false;
+		}
+		
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
 }

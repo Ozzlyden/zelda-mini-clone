@@ -17,15 +17,15 @@ public class Player extends Rectangle {
 	public void tick () {
 		
 		//Logica de movimentacao
-		if (right ) {
+		if (right && World.isFree(x+spd, y) ) {		//world eh a parte de colisao do mundo
 			x += spd;
-		}else if (left) {
+		}else if (left && World.isFree(x-spd, y)) {
 			x -= spd;
 		}
 		
-		if ( up ) {
+		if ( up && World.isFree(x, y-spd)) {
 			x += spd;
-		}else if (down) {
+		}else if (down && World.isFree(x, y+spd)) {
 			x -= spd;
 		}
 	}

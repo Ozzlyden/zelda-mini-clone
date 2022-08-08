@@ -14,15 +14,18 @@ public class Game extends Canvas implements Runnable, KeyListener{
 	
 	//resolucao da tela
 	public static int WIDTH = 480, HEIGHR = 480;
-	public Player player;
+	public Player player;	//Instanciar classe Player
+	
+	public World world;	//instancia classe World
 	
 	public Game() {
 		this.addKeyListener(this);	//colocar eventos de teclado e os metodos ja estao nessa class Game
 		//setando as dimensoes
 		this.setPreferredSize( new Dimension (WIDTH, HEIGHT));
-		player = new Player(0, 0);	//Dimensoes inicio game
+		player = new Player(32, 32);	//Dimensoes inicio game
+		world = new World();
 	}
-
+	
 	public void tick () {
 		player.tick();		//chama dentro da class Player o metodo tick
 	}
@@ -43,10 +46,13 @@ public class Game extends Canvas implements Runnable, KeyListener{
 		g.fillRect(0, 0, WIDTH, HEIGHT);
 		
 		player.render(g); 	//chama dentro da class Player o metodo render 
-
+		
+		world.render(g);
+		
 		bs.show();
 		
 	}
+
 	
 	public static void main (String [] args) {
 		//Instanciou o metodo Game e a biblioteca Jframe
@@ -57,9 +63,9 @@ public class Game extends Canvas implements Runnable, KeyListener{
 		frame.add(game);
 		frame.setTitle("Mini Zelda");
 		
-		frame.pack();
-		
 		frame.setLocationRelativeTo(null);
+		
+		frame.pack();
 		
 		//Para finalizar o projeto e nao pegar memoria da maquina
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -84,7 +90,7 @@ public class Game extends Canvas implements Runnable, KeyListener{
 				}
 			}
 	}
-	
+
 	//TECLADO (KeyListener) Config
 	
 	@Override
@@ -125,6 +131,6 @@ public class Game extends Canvas implements Runnable, KeyListener{
 		// TODO Auto-generated method stub
 		
 	}
-
-
 }
+	
+	

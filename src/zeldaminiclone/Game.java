@@ -22,6 +22,7 @@ public class Game extends Canvas implements Runnable, KeyListener{
 		this.addKeyListener(this);	//colocar eventos de teclado e os metodos ja estao nessa class Game
 		//setando as dimensoes
 		this.setPreferredSize( new Dimension (WIDTH, HEIGHT));
+		new Spritesheet();
 		player = new Player(32, 32);	//Dimensoes inicio game
 		world = new World();
 	}
@@ -132,5 +133,3 @@ public class Game extends Canvas implements Runnable, KeyListener{
 		
 	}
 }
-	
-	

@@ -13,10 +13,13 @@ import javax.swing.JFrame;
 public class Game extends Canvas implements Runnable, KeyListener{
 	
 	//resolucao da tela
-	public static int WIDTH = 480, HEIGHT = 480;
+	public static int WIDTH = 640, HEIGHT = 480;	//Tmanho Janela
+	public static int SCALE = 3;					//escala
+	
 	public Player player;	//Instanciar classe Player
 	
 	public World world;	//instancia classe World
+	
 	
 	public Game() {
 		this.addKeyListener(this);	//colocar eventos de teclado e os metodos ja estao nessa class Game
@@ -25,6 +28,7 @@ public class Game extends Canvas implements Runnable, KeyListener{
 		new Spritesheet();
 		player = new Player(32, 32);	//Dimensoes inicio game
 		world = new World();
+		
 	}
 	
 	public void tick () {
@@ -44,7 +48,7 @@ public class Game extends Canvas implements Runnable, KeyListener{
 		
 		g.setColor(new Color (0, 135, 13));
 		//criar retangulo na tela nas dimensoes (x,y,WIDTH,HEIGHT)
-		g.fillRect(0, 0, WIDTH, HEIGHT);
+		g.fillRect(0, 0, WIDTH*SCALE, HEIGHT*SCALE);
 		
 		player.render(g); 	//chama dentro da class Player o metodo render 
 		
@@ -96,7 +100,7 @@ public class Game extends Canvas implements Runnable, KeyListener{
 	
 	@Override
 	public void keyPressed(KeyEvent e) {
-		//LOGICA para parar
+		//LOGICA para precionar
 		if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
 			player.right = true;
 		}else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
@@ -112,6 +116,7 @@ public class Game extends Canvas implements Runnable, KeyListener{
 
 	@Override
 	public void keyReleased(KeyEvent e) {
+		//LOGICA para soltar botao
 		if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
 			player.right = false;
 		}else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
@@ -131,3 +136,5 @@ public class Game extends Canvas implements Runnable, KeyListener{
 		
 	}
 }
+	
+	

@@ -12,17 +12,17 @@ public class World {
 	
 	public World() {
 		//Criancao dos blocos
-		for (int xx = 0; xx < 15 ; xx++) {		//loop para criar 15 blocos -> 480/32 = 15
+		for (int xx = 0; xx < 15*2 ; xx++) {		//loop para criar 15 blocos -> 480/32 = 15 na horizontal
 			blocos.add(new Blocks(xx*32,0));
 		}
-		for (int xx = 0; xx < 15 ; xx++) {		
-			blocos.add(new Blocks(xx*32,480 - 32)); //480 eh a resolucao e 32 e linha da altura
+		for (int xx = 0; xx < 15*2 ; xx++) {		
+			blocos.add(new Blocks(xx*32,480 - 32)); //480 eh a resolucao e 32 
 		}
-		for (int yy = 0; yy < 15 ; yy++) {		
+		for (int yy = 0; yy < 15*2 ; yy++) {		
 			blocos.add(new Blocks(0,yy*32)); // fazendo os blocos na vertical
 		}
-		for (int yy = 0; yy < 15 ; yy++) {		
-			blocos.add(new Blocks(480 - 32, yy*32)); 
+		for (int yy = 0; yy < 15*2 ; yy++) {		
+			blocos.add(new Blocks(640 - 32, yy*32)); 
 		}
 	}
 	

@@ -13,7 +13,7 @@ import javax.swing.JFrame;
 public class Game extends Canvas implements Runnable, KeyListener{
 	
 	//resolucao da tela
-	public static int WIDTH = 480, HEIGHR = 480;
+	public static int WIDTH = 480, HEIGHT = 480;
 	public Player player;	//Instanciar classe Player
 	
 	public World world;	//instancia classe World
@@ -42,7 +42,7 @@ public class Game extends Canvas implements Runnable, KeyListener{
 		
 		Graphics g = bs.getDrawGraphics();
 		
-		g.setColor(Color.black);
+		g.setColor(new Color (0, 135, 13));
 		//criar retangulo na tela nas dimensoes (x,y,WIDTH,HEIGHT)
 		g.fillRect(0, 0, WIDTH, HEIGHT);
 		
@@ -95,41 +95,39 @@ public class Game extends Canvas implements Runnable, KeyListener{
 	//TECLADO (KeyListener) Config
 	
 	@Override
-	public void keyTyped(KeyEvent e) {
-		//LOGICA para andar
-		if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-			player.right = true;
-		}else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-			player.left = true;
-		}
-		if (e.getKeyCode() == KeyEvent.VK_UP) {
-			player.right = true;
-		}else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-			player.left = true;
-		}
-		
-	}
-	
-	
-	@Override
 	public void keyPressed(KeyEvent e) {
 		//LOGICA para parar
 		if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-			player.right = false;
+			player.right = true;
 		}else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-			player.left = false;
+			player.left = true;
 		}
 		if (e.getKeyCode() == KeyEvent.VK_UP) {
-			player.right = false;
+			player.up = true;
 		}else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-			player.left = false;
+			player.down = true;
 		}
 		
 	}
 
 	@Override
 	public void keyReleased(KeyEvent e) {
-		// TODO Auto-generated method stub
+		if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+			player.right = false;
+		}else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
+			player.left = false;
+		}
+		if (e.getKeyCode() == KeyEvent.VK_UP) {
+			player.up = false;
+		}else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+			player.down = false;
+		}
+		
+	}
+	
+	@Override
+	public void keyTyped(KeyEvent e) {
+	
 		
 	}
 }

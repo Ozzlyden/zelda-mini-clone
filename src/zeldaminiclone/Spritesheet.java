@@ -10,6 +10,8 @@ public class Spritesheet {
 	public static BufferedImage spritesheet;
 	//Cordenadas da imagem dentro da spritesheet.png
 	public static BufferedImage player_front;		
+
+	public static BufferedImage tileWall;
 	
 	public Spritesheet() {
 		//Esse try e catch serve so para caso n ache a imagem
@@ -20,6 +22,7 @@ public class Spritesheet {
 			e.printStackTrace();
 		} 
 		player_front = Spritesheet.getSprite(0, 11, 16, 16);	//Coordenada 0, 11 e resolucao 16x16
+		tileWall = Spritesheet.getSprite(280, 221, 16, 16);
 	}
 	
 	public static BufferedImage getSprite(int x, int y, int width, int height) {

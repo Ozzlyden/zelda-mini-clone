@@ -26,6 +26,7 @@ public class World {
 		}
 	}
 	
+	//LOGICA COLISAO
 	public static boolean isFree(int x, int y) {
 		for(int i = 0; i < blocos.size(); i++) {
 			Blocks blocoAtual = blocos.get(i);

@@ -33,7 +33,7 @@ public class Game extends Canvas implements Runnable, KeyListener{
 	
 	public void tick () {
 		player.tick();		//chama dentro da class Player o metodo tick
-	}
+	} 
 	
 	public void render() {
 		BufferStrategy bs = this.getBufferStrategy();
@@ -105,6 +105,10 @@ public class Game extends Canvas implements Runnable, KeyListener{
 			player.right = true;
 		}else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
 			player.left = true;
+		}
+		//Botao para atirar
+		if(e.getKeyCode() == KeyEvent.VK_Q) {
+			player.shoot = true;
 		}
 		if (e.getKeyCode() == KeyEvent.VK_UP) {
 			player.up = true;

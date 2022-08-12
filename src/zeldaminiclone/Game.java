@@ -1,4 +1,3 @@
-
 package zeldaminiclone;
 
 import java.awt.Canvas;
@@ -19,7 +18,7 @@ public class Game extends Canvas implements Runnable, KeyListener{
 	public static int WIDTH = 640, HEIGHT = 480;	//Tamanho Janela
 	public static int SCALE = 3;					//escala
 	
-	public Player player;	//Instanciar classe Player
+	public static Player player;	//Instanciar classe Player
 	
 	public World world;	//instancia classe World
 	public List <Enemy> enemies = new ArrayList <Enemy>(); 

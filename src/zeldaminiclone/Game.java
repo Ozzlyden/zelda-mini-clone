@@ -1,3 +1,4 @@
+
 package zeldaminiclone;
 
 import java.awt.Canvas;
@@ -7,18 +8,21 @@ import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.image.BufferStrategy;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JFrame;
 
 public class Game extends Canvas implements Runnable, KeyListener{
 	
 	//resolucao da tela
-	public static int WIDTH = 640, HEIGHT = 480;	//Tmanho Janela
+	public static int WIDTH = 640, HEIGHT = 480;	//Tamanho Janela
 	public static int SCALE = 3;					//escala
 	
 	public Player player;	//Instanciar classe Player
 	
 	public World world;	//instancia classe World
+	public List <Enemy> enemies = new ArrayList <Enemy>(); 
 	
 	
 	public Game() {
@@ -29,10 +33,17 @@ public class Game extends Canvas implements Runnable, KeyListener{
 		player = new Player(32, 32);	//Dimensoes inicio game
 		world = new World();
 		
+		enemies.add(new Enemy(32, 32));	//colocando Enemy na mesm posicao do player
+		enemies.add(new Enemy(64, 64));
+		
 	}
 	
 	public void tick () {
 		player.tick();		//chama dentro da class Player o metodo tick
+		
+		for(int i = 0; i < enemies.size(); i++) {
+			enemies.get(i).tick();
+		}
 	} 
 	
 	public void render() {
@@ -51,6 +62,10 @@ public class Game extends Canvas implements Runnable, KeyListener{
 		g.fillRect(0, 0, WIDTH*SCALE, HEIGHT*SCALE);
 		
 		player.render(g); 	//chama dentro da class Player o metodo render 
+		//render enemies
+		for(int i = 0; i < enemies.size(); i++) {
+			enemies.get(i).render(g);
+		}
 		
 		world.render(g);
 		
@@ -68,7 +83,7 @@ public class Game extends Canvas implements Runnable, KeyListener{
 		frame.add(game);
 		frame.setTitle("Mini Zelda");
 		
-		frame.setLocationRelativeTo(null);
+		frame.setLocationRelativeTo(null);		//centralizar janela
 		
 		frame.pack();
 		

@@ -2,7 +2,6 @@ package zeldaminiclone;
 
 import java.awt.image.BufferedImage;
 import java.io.IOException;
-
 import javax.imageio.ImageIO;
 
 public class Spritesheet {
@@ -12,13 +11,7 @@ public class Spritesheet {
 	
 	public static BufferedImage[] player_front;		//Array de Imagens do Player de frente
 	
-	
-	public static BufferedImage[] player_up;
-	/*
-	public static BufferedImage[] player_down;
-	public static BufferedImage[] player_right;
-	public static BufferedImage[] player_left;
-	*/
+	public static BufferedImage[] enemy_front;
 	
 	
 	public static BufferedImage tileWall;
@@ -32,25 +25,16 @@ public class Spritesheet {
 			e.printStackTrace();
 		} 
 		player_front = new BufferedImage[2]; 	//2 spritesheet de Player_front
+		enemy_front = new BufferedImage[2];
 	
 		player_front[0] = Spritesheet.getSprite(0, 11, 16, 16);			//Coordenada 0, 11 e resolucao 16x16
 		player_front[1] = Spritesheet.getSprite(16, 11, 16, 16);
-		/*
-		player_up = new BufferedImage[2];
-		player_up[0] = Spritesheet.getSprite(70, 11, 16, 16);
-		player_up[1] = Spritesheet.getSprite(87, 11, 16, 16);
 		
 		
-		player_down = new BufferedImage[3]; 
-		player_down[0] = Spritesheet.getSprite(0, 11, 16, 16);
+		enemy_front[0] = Spritesheet.getSprite(109, 224, 16, 16);
+		enemy_front[1] = Spritesheet.getSprite(126, 224, 16, 16);
 		
-		player_right = new BufferedImage[3]; 
-		player_right[0] = Spritesheet.getSprite(0, 11, 16, 16);
 		
-		player_left = new BufferedImage[1]; 
-		player_left[0] = Spritesheet.getSprite(34, 11, 16, 16);
-		player_left[1] = Spritesheet.getSprite(51, 11, 16, 16);
-		*/
 		
 		
 		tileWall = Spritesheet.getSprite(280, 221, 16, 16);

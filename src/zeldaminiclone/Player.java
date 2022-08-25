@@ -41,10 +41,10 @@ public class Player extends Rectangle {		//Biblioteca de dimensoes
 		}
 		
 		if ( up && World.isFree(x, y-spd)) {
-			x -= spd;
+			y -= spd;
 			moved = true;
 		}else if (down && World.isFree(x, y+spd)) {
-			x += spd;
+			y += spd;
 			moved = true;
 		}
 		
@@ -70,8 +70,6 @@ public class Player extends Rectangle {		//Biblioteca de dimensoes
 	}
 	
 	public void render (Graphics g) {
-		//g.setColor(Color.blue);
-		//g.fillRect(x, y, width, height);
 		g.drawImage(Spritesheet.player_front[curAnimation], x, y, 32, 32, null); 		//render da imagem do Zelda de frente
 		for(int i = 0; i < bullets.size(); i ++) {
 			bullets.get(i).render(g);
